@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
+      >
+    <ui:composition template="/WEB-INF/newTemplate.xhtml" >
+        <ui:define name="content" >
+            <ui:param name="idProduit" value="#{controler.getUrlParamValue('id')}" />
+            #{commentaire.idProduit  = Integer.parseInt(idProduit)}
+
+            <div class="w3-card-4" style="width: 100% ;max-width: 700px ; margin : auto ;" >
+                <table>
+                    <tr >
+                        <td rowspan="5" style=" width : 257px ; margin-right: 10px;" > <img height="256px" width="256px" src="./../resources/mgs/produit.jpg" alt="product picture"/> </td>
+
+                    </tr>
+                    <tr>
+                        <td><p> libelle :  #{controler.getProduitById(controler.getUrlParamValue("id")).libelle} </p>
+                            <p> type :  #{controler.getSousGenreById(controler.getProduitById(idProduit).idSousGenre).sousGenre} </p>
+                            <p>Date : #{controler.getProduitById(idProduit).dateEnrg}</p>
+                            <p>Prix :  #{controler.getProduitById(idProduit).prixVent}</p>
+                            <p>Fabricant :  #{controler.getMarqueById(controler.getProduitById(idProduit).idMarque).marque}</p>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="w3-card-12" style="width: 100% ;max-width:  700px  ; margin : 10px auto ;" >
+                <h:form>
+                    #{panier.idProduit = Integer.parseInt(idProduit)}
+
+                    <h:inputText class="w3-input" a:type="number" value="#{panier.qte}" />
+                    <h:commandButton value="ajouter a mon panier" action="#{controler.acheter(panier)}" class="w3-btn w3-green w3-right"  >
+                        <f:param name="idproject" value="#{idProduit}"/>
+                    </h:commandButton>
+                </h:form>
+            </div>
+            <div class="w3-card-4" style="width: 100% ;max-width:  700px  ; margin : 10px auto ;" >
+                <div class="w3-container w3-blue w3-padding-4" > évaluer ce produit </div>
+                <div class="w3-card-2" >
+                    <h:form>
+                        <h:inputTextarea id="txtcmnt" validatorMessage="le commentaire ne peux pas etre vide" rows="4" disabled="#{!user.isLoged}" style="width: 100% ; max-width: 700px ;" value="#{commentaire.txt}" a:plasholder="saisir votre commentaiere ......" >
+                        </h:inputTextarea>
+                        <h:message id="mtxtxmnt" for="txtcmnt" class="w3-content w3-red w3-center" />
+                        <h:commandButton value="commenter" action="#{controler.addComment(commentaire)}" class="w3-btn w3-green w3-right"  >
+                            <f:param name="idproject" value="#{idProduit}"/>
+                        </h:commandButton>
+                        <h:commandButton type="reset"  value="vider" class="w3-btn w3-red  w3-right " ></h:commandButton>
+                    </h:form>
+                </div>
+            </div>
+            <div class="w3-card-4" style="width: 100% ;max-width:  700px  ; margin : 10px auto ;" >
+                <div class="w3-container w3-blue w3-padding-4" > évaluer ce produit </div>
+                <div class="w3-card-2" >
+                    <ui:repeat value="#{controler.allCommentaire(idProduit)}"  var="commentaire" >
+                        <div class="w3-container w3-pale-blue w3-padding-4" style="margin: 10px auto ; width : 650px " >
+                            <dl>
+                                <dt>#{commentaire.login}</dt>
+                                <dd>#{commentaire.txt}</dd>
+                            </dl>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+

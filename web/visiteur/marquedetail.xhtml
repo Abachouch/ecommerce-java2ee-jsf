@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/WEB-INF/newTemplate.xhtml" >
+        <ui:define name="content" >
+            <h1>list des produit </h1>
+            <ui:repeat value="#{controler.allProduitsByIdMarque()}" var="produit" varStatus="status" >
+                <div class="produit w3-card-4">
+                    <div class="w3-container w3-blue w3-center">
+                        <p>#{produit.libelle}</p>
+                    </div>
+                    <img height="100%" width="100%" src="./../resources/mgs/produit.jpg" alt="product picture"/>
+                    <div class="w3-container w3-blue">
+                        <img class="imgMarque" src="./../resources/mgs/asus.jpg" height="34px" alt="Asus inc" />
+                        <button class="w3-btn w3-green w3-right acheter">#{produit.prixVent} </button>
+                    </div>
+                </div>
+            </ui:repeat>
+        </ui:define>
+    </ui:composition>
+</html>
+

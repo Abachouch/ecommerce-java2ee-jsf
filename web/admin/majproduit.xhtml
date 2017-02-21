@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/WEB-INF/newTemplate.xhtml" >
+        <ui:define name="content" >
+            <div style="width: 600px ; margin: auto ">
+                <h:form id="MyForm" class="w3-container">
+                    <h:outputLabel class="control-label" for="libelle">libelle produit :</h:outputLabel>
+                    <h:inputText class="w3-input" value="#{produit.libelle}" id="libelle" required="true" requiredMessage="vous oublié de saisir la libelle de produit a ajouter"></h:inputText>
+                    <h:message id="mlibelle" for="libelle" style="color:red"/>
+                    
+                    <h:outputLabel class="control-label" for="ppr">prix de vent :</h:outputLabel>
+                    <h:inputText  class="w3-input" value="#{produit.prixVent}" id="prixVent" required="true" converterMessage="saisir un nombre valide " requiredMessage="vous oublié de saisir le prix de vent de produit a ajouter"></h:inputText>
+                    <h:message id="mprixVent" for="prixVent" style="color:red"/>
+                    
+                    <h:outputLabel class="control-label" for="ppr">prix d'achat :</h:outputLabel>
+                    <h:inputText class="w3-input" value="#{produit.prixAchat}" id="prixAchat" rendered="true" converterMessage="saisir un nombre valide " requiredMessage="vous oublié de saisir le prix d'achat de produit a ajouter"></h:inputText>
+                    <h:message id="mprixAchat" for="prixAchat" style="color:red"/>
+                    
+                    <h:outputLabel class="control-label" for="marque">Marque :</h:outputLabel>
+                    <h:selectOneMenu id="marque" label="heh" class="w3-input" value="#{produit.idMarque}"  >
+                        <f:selectItems  value="#{controler.allMarques()}" var="marque"  itemLabel="#{marque.marque}"  itemValue="#{marque.idMarque}" />
+                    </h:selectOneMenu>
+                    
+                    <h:outputLabel class="control-label" for="genre">Genre :</h:outputLabel>
+                    <h:selectOneMenu id="genre" label="heh" class="w3-input" value="#{genre.idGenre}"  valueChangeListener="#{controler.genreEvent}" >
+                        <f:selectItems  value="#{controler.allGenre()}" var="genre"  itemLabel="#{genre.genre}"  itemValue="#{genre.idGenre}" />
+                        <f:ajax render="sousGenre" execute="@this" />
+                    </h:selectOneMenu>
+                    <h:selectOneMenu id="sousGenre"  class="w3-input" value="#{produit.idSousGenre}" >
+                        <f:selectItems  value="#{controler.allSousGenreByGenre()}" var="sousGenre"  itemLabel="#{sousGenre.sousGenre}"  itemValue="#{sousGenre.idSousGenre}" />
+                    </h:selectOneMenu>
+                    
+                    <h:commandButton rendered="#{user.isLoged}" value="Enregistrer" action="#{controler.addProduit(produit)}" >
+                        
+                    </h:commandButton>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

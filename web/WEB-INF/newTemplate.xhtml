@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	    
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="./../resources/css/article.css" rel="stylesheet" type="text/css" />
+        
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <ul class="w3-navbar w3-large w3-black w3-left-align w3-top">
+        <li class="w3-hide-medium w3-hide-large w3-black w3-opennav w3-right">
+            <a href="javascript:void(0);" onclick="toggle()">☰</a>
+        </li>
+        
+        <li><a class="w3-green" href="#"><i class="fa fa-home w3-large"></i></a></li>
+        
+        
+        
+        <li class="w3-hide-small w3-right"><h:link rendered="#{user.isLoged}" outcome="/visiteur/panier.xhtml?faces-redirect=true" ><i class="fa fa-shopping-cart w3-large"></i></h:link></li>
+        
+        <li  title="logout" class="w3-hide-small w3-right"> <h:form> <h:commandLink rendered="#{user.isLoged}" action="#{user.logOut()}" ><i class="fa fa-sign-in w3-large " style="color : red" ></i></h:commandLink></h:form> </li>
+        
+        <li class="w3-hide-small"></li>
+        
+        <li title="Téléphones portable"  class="w3-hide-small"><a href="/ecommerce/visiteur/produit.xhtml?cat=1"><i class="fa fa-mobile w3-large "></i></a></li>
+        
+        <li title="Tablet" class="w3-hide-small"><a href="/ecommerce/visiteur/produit.xhtml?cat=2"><i class="fa fa-tablet w3-large "></i></a></li>
+        
+        <li title="Ordinateur" class="w3-hide-small"><a href="/ecommerce/visiteur/produit.xhtml?cat=3"><i class="fa fa-desktop w3-large "></i></a></li>
+        
+        <li title="Piece Ordinateur" class="w3-hide-small"><a href="/ecommerce/visiteur/produit.xhtml?cat=4"><i class="fa fa-usb w3-large "></i></a></li>
+        
+        <li title="Piece Téléphone" class="w3-hide-small"><a href="/ecommerce/visiteur/produit.xhtml?cat=5"><i class="fa fa-puzzle-piece w3-large "></i></a></li>
+        
+        <li title="Accessoir Téléphones" class="w3-hide-small"><a href="/ecommerce/visiteur/produit.xhtml?cat=6"><i class="fa fa-headphones w3-large "></i></a></li>
+        
+        <li title="Accessoir Pc" class="w3-hide-small"><a href="/ecommerce/visiteur/produit.xhtml?cat=7"><i class="fa fa-keyboard-o w3-large "></i></a></li>
+        
+        <li title="Ajouter un Produit" class="w3-hide-small"><h:link rendered="#{user.idRole == 1}"  outcome="/admin/majproduit.xhtml?faces-redirect=true"><i class="fa fa-plus-circle w3-large "  style="color : gold" ></i></h:link></li>
+        <li title="login" class="w3-hide-small w3-right"> <h:form> <h:commandLink rendered="#{!user.isLoged}" action="/visiteur/login.xhtml" ><i class="fa fa-sign-in w3-large "   style="color : green"     ></i></h:commandLink></h:form> </li>
+    </ul>
+    <div id="page">
+
+<div class="w3-hide-large" id="nav">
+            <nav class="w3-sidenav w3-white" style="width:200px;right:0 ; display : none ; margin-top : 42px" id="mySidenav">
+                <a href="#" onclick="w3_close()" class="w3-closenav w3-pale-red w3-hide-large">Close &times;</a>
+                <a href="/ecommerce/visiteur/produit.xhtml?cat=1" class="w3-closenav w3-hide-large">Téléphones portable</a>
+                <a  href="/ecommerce/visiteur/produit.xhtml?cat=2" class="w3-closenav w3-hide-large">Tablet</a>
+				<a  href="/ecommerce/visiteur/produit.xhtml?cat=3" class="w3-closenav w3-hide-large">Ordinateur</a>
+				<a  href="/ecommerce/visiteur/produit.xhtml?cat=4" class="w3-closenav w3-hide-large">Piece Ordinateur</a>
+				<a  href="/ecommerce/visiteur/produit.xhtml?cat=5" class="w3-closenav w3-hide-large">Piece Téléphone</a>
+				<a  href="/ecommerce/visiteur/produit.xhtml?cat=6" class="w3-closenav w3-hide-large">Accessoir Téléphones</a>
+				<a  href="/ecommerce/visiteur/produit.xhtml?cat=7" class="w3-closenav w3-hide-large">Accessoir Pc</a>
+				<h:link class="w3-closenav w3-pale-yellow w3-hide-large" rendered="#{user.idRole == 1}"  outcome="/admin/majproduit.xhtml?faces-redirect=true"><i >Ajouter Produit</i></h:link>
+				<h:form class="w3-closenav w3-pal-green w3-hide-large" > <h:commandLink rendered="#{!user.isLoged}" action="/visiteur/login.xhtml"   ><i   style="color : black"     >login</i></h:commandLink></h:form>
+				<h:form class="w3-closenav w3-pale-red w3-hide-large" > <h:commandLink rendered="#{user.isLoged}" action="#{user.logOut()}" ><i    style="color : black"     >logout</i></h:commandLink></h:form>
+            </nav>
+        </div>
+
+        
+        <ul id="searchPanel" class="w3-container w3-black w3-center">
+            <input onkeypress="if (event.keyCode == 13) { window.location = '/ecommerce/visiteur/produit.xhtml?faces-redirect=true&amp;key='+this.value;  }" type="search" class="w3-input w3-animate-input" placeholder="search" list="searchData" />
+            <datalist id="searchData" >
+                <ui:repeat value="#{controler.allProduits()}" var="produit" >
+                    <option>#{produit.libelle}</option>
+                </ui:repeat>
+            </datalist>
+        </ul>
+    </div>
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+       
+
+    </h:body>
+<script>
+        function toggle() {
+            if (document.getElementById("mySidenav").style.display == "block") {
+                document.getElementById("mySidenav").style.display = "none";
+            } else {
+                document.getElementById("mySidenav").style.display = "block";
+            }
+        }
+        function w3_open() {
+            document.getElementById("mySidenav").style.display = "block";
+
+        }
+        function w3_close() {
+            document.getElementById("mySidenav").style.display = "none";
+        }
+    </script>
+</html>

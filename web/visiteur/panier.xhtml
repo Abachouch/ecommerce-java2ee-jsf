@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+        <ui:composition template="/WEB-INF/newTemplate.xhtml" >
+            <ui:define name="content" >
+                
+                <c:if test="#{controler.panier.size() == 0}">
+                <div class="w3-container w3- w3-pale-red w3-padding-12">
+                    <p class="w3-center" >Votre panier est vide</p>
+                </div>
+            </c:if>
+                <c:if test="#{controler.panier.size() > 0}">
+                                    <div class="w3-card-8" style=" max-width: 500px ; width: 100% ; margin: 20px auto ;">
+                    <ui:repeat value="#{controler.getPanier()}" var="panier" >
+                        <div class="w3-card-8 w3-border-blue" style="margin: 20px ; ">
+                            <p>libelle : #{controler.getProduitById(panier.idProduit).libelle }</p>
+                            <p>Qte : #{panier.qte }</p>
+                            <p>prix unitaire : #{controler.getProduitById(panier.idProduit).prixVent}</p>
+                            <p>Somme :  #{controler.getProduitById(panier.idProduit).prixVent * panier.qte} DH</p>
+                        </div>
+                    </ui:repeat>
+                </div>
+                </c:if>
+            </ui:define>
+        </ui:composition>
+</html>
+

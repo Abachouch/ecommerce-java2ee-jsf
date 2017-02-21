@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      >
+     <ui:composition template="/WEB-INF/newTemplate.xhtml" >
+        <ui:define name="content" >
+            <div class="w3-card-8" style="max-width: 500px ; width :100% ; margin: 20px auto ; padding-bottom: 40px ; " >
+                <div class="w3-container w3-blue w3-padding-12" ><p class="w3-center">Login</p></div>
+                <h:form class="w3-form" >
+                    <h:outputLabel class="w3-label" for="login" value="login :" ></h:outputLabel>
+                <h:inputText id="login" class="w3-input " value="#{user.login}" ></h:inputText>
+                 <h:outputLabel class="w3-label"  for="password" value="password :" ></h:outputLabel>
+                <h:inputText id="password" a:type="password" class="w3-input " value="#{user.password}" ></h:inputText>
+                <h:commandButton class="w3-btn w3-right w3-green" value="login" action="#{user.logIn()}"></h:commandButton>
+            </h:form>
+        </div>
+        </ui:define>
+    </ui:composition>
+</html>

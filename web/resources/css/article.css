@@ -1,0 +1,27 @@
+#main {
+    padding: 20px;
+    border: 1px gray solid;
+    height: 100%;
+}
+.produit {
+    width: 250px;
+    float: left;
+    margin: 5px;
+}
+.imgMarque {
+    border-radius: 10%;
+    margin: 5px 0 2px 0;
+    padding: 0;
+}
+.acheter {
+    height: 35px;
+    margin: 5px 0 2px 0;
+}
+/************************** page **************************/
+#searchPanel{
+    margin-top : 40px; 
+    padding: 20px 40px ;
+}
+.page {
+    margin-top: 40px;
+}
